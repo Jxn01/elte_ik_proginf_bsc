@@ -1,0 +1,122 @@
+from pyspark import SparkConf, SparkContext 
+import findspark
+findspark.init()
+findspark.find()
+conf = SparkConf().set("spark.local.dir", "/home/jxn/.sparktmp") # A local dir nélkül nem működik a configom, de azt ki lehet majd törölni
+sc = SparkContext(conf=conf)
+
+from pyspark.sql import SparkSession
+from pyspark.sql import *
+from pyspark.sql.functions import *
+
+spark = SparkSession.builder.getOrCreate()
+
+def k_mer(line):
+  kmers = []
+  i = 0
+  while(i+2 < len(line)):
+    kmers.append(line[i:i+3])
+    i+=1
+  return kmers
+
+kmer_dict = sc.textFile('kmerInput.txt')\
+  .map(lambda line : k_mer(line))\
+  .flatMap(lambda x : x)\
+  .filter(lambda kmer : "T" in kmer)\
+  .countByValue()
+
+result = sc.parallelize(kmer_dict.values()).filter(lambda value: value > 100).count()
+print(result)
+
+## RESULT = 18
+
+weboldalak = sc.textFile('weboldalak.txt')\
+  .map(lambda line: (line.split(" ", 1)[0], line.split(" ", 1)[1]))\
+  .filter(lambda web: len(web[1]) > 10)\
+  .map(lambda web: (web[0], len(list(filter(lambda x: x == "ELTE" or x == "elte", web[1].split(" ")))), len(web[1].split(" "))))\
+  .sortBy(lambda web: web[1], False).take(1)
+
+weboldal = weboldalak[0]
+
+print(weboldal)
+
+## RESULT = ('elte.hu', 3, 53)
+
+df_books = spark.read\
+  .format("csv")\
+  .option('header', True)\
+  .option("inferschema", True)\
+  .load("books.csv")
+  
+df_books.createOrReplaceTempView("BOOKS")
+  
+spark.sql("SELECT AUTHOR, COUNT(TITLE) FROM BOOKS WHERE AUTHOR IS NOT NULL GROUP BY AUTHOR, TITLE SORT BY COUNT(TITLE) DESC").show(3)
+
+## RESULT = 
+
++--------------------+------------+
+|              AUTHOR|count(TITLE)|
++--------------------+------------+
+|       Lewis Carroll|          15|
+|Petra Mettke, Kar...|          11|
+|    L. M. Montgomery|          11|
++--------------------+------------+
+only showing top 3 rows
+
+df_books = spark.read\
+  .format("csv")\
+  .option('header', True)\
+  .option("inferschema", True)\
+  .load("books.csv")
+  
+df_books.createOrReplaceTempView("BOOKS")
+
+spark.sql("SELECT AUTHOR, COUNT(PUBLISHER) FROM BOOKS WHERE AUTHOR IS NOT NULL GROUP BY AUTHOR, PUBLISHER HAVING COUNT(PUBLISHER) > 35").show(300)
+
+## RESULT =
++--------------------+----------------+
+|              AUTHOR|count(PUBLISHER)|
++--------------------+----------------+
+|Shelley Admont, K...|              89|
+|       Carolyn Keene|              50|
+|          Adam Blade|              45|
+|    Roger Hargreaves|              56|
+|       Die Blokehead|              49|
+|         R. L. Stine|              78|
+|     Kirsteen Robson|              39|
+|       Mohammed Umar|              44|
+|         Idries Shah|             160|
+|Steve Barlow, Ste...|              43|
+|          J. R. Ward|              48|
+|         Enid Blyton|             127|
+|          Tuula Pere|              52|
+|        El Blokehead|              89|
+|          Tuula Pere|              40|
+|       James Manning|             105|
+|         Jake Maddox|              51|
+|     Peter Hertzberg|              41|
+|         Thithiajobs|              62|
+|       Daisy Meadows|              56|
+|       Penelope Dyan|              79|
+|       Grace Goodwin|              55|
+|        Carole Marsh|              67|
+|         Jules Verne|              88|
+|Speedy Publishing...|             100|
+|     Coloring Bandit|              40|
+|                Anna|              50|
+|       James Manning|              56|
+|Shelley Admont, K...|             102|
+|          Dan Gutman|              45|
+|    Roger Hargreaves|              36|
+|  Michelle M. Pillow|              80|
+|         Erin Hunter|              60|
+|    Wilfried A. Hary|              46|
+|          Fiona Watt|              78|
+|     Garcia Santiago|            1463|
+|              Panini|              55|
+|         Erin Hunter|              37|
+|       Alfred Bekker|              80|
+|   Jacqueline Wilson|              52|
+|        Steve Herman|              80|
+|     Matilde Correia|              53|
++--------------------+----------------+

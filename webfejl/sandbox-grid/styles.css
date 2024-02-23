@@ -1,0 +1,57 @@
+html {
+	font-family: Verdana, sans-serif;
+	/* background-color: ...; background-image: ...; */
+}
+
+/*** RESPONSIVE LAYOUT ***/
+
+body {
+	margin: 0px;
+	/* width: ...%; min-width: ...px; max-width: ...px; */
+}
+
+header, nav, main, aside, footer {
+	overflow: hidden;
+	padding: 0 10px;
+	border: 1px solid lightgray;
+}
+
+/* large desktop */
+
+/* desktop */
+@media screen and (max-width:1200px) {
+
+}
+
+/* tablet */
+@media screen and (max-width:992px) {
+
+}
+
+/* phone */
+@media screen and (max-width:576px) {
+
+}
+
+/*** RESPONSIVE IMAGES ***/
+
+figure img {max-width: 100%;}
+figure {margin: 0px; text-align: center}
+
+/*** RESPONSIVE COLUMNS ***/
+
+div.column {
+	padding: 0 10px;
+	border: 1px solid lightgray;
+}
+
+/* large desktop */
+div.row-3 {
+	margin-left: -10px;
+	margin-right: -10px;
+}
+
+/* desktop */
+@media screen and (max-width:1200px) {
+
+}

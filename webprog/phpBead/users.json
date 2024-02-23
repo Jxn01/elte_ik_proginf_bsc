@@ -1,0 +1,8 @@
+[
+  { "id": "1", "username": "admin", "email": "email1@email.hu", "password": "admin", "isAdmin": true },
+  { "id": "2", "username": "user2", "email": "email2@email.hu", "password": "user2", "isAdmin": false },
+  { "id": "63c5dd93d39b0", "username": "asd", "email": "asd@asd.l", "password": "asd", "isAdmin": false },
+  { "id": "63c5e16f07fa8", "username": "asd2", "email": "asd2@asd.l", "password": "asd2", "isAdmin": false },
+  { "id": "63c5e1aecf662", "username": "asd3", "email": "asd3@asd.l", "password": "asd3", "isAdmin": false },
+  { "id": "63c6cf9604131", "username": "almafa", "email": "xd@xd.com", "password": "123", "isAdmin": false }
+]

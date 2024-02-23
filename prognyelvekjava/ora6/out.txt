@@ -1,0 +1,7 @@
+1, 2, 5, -2, HK
+10, 20, 0, 7, NOT HK
+3, 2, NOT HK
+2, NOT HK
+0, NOT HK
+1, 2, NOT HK
+3, NOT HK

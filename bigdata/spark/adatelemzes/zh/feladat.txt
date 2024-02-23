@@ -1,0 +1,28 @@
+Feladatok:
+
+1. Olvasd be az adathalmazt: diabetes.csv
+
+2. Előfeldoglozás (1.5 pont)
+
+- Szűrd ki azokat a sorokat az adathalmazból, ahol a testtömegindex (BMI) és a vérnyomás (BloodPressure) értéke 0. (0.5 pont)
+- A hiányzó értékeket helyettesítsd az adott oszlop átlagával, de az átlagszámításkor csak azokat a sorokat vedd figyelembe, ahol az életkor megegyezik a hiányzó értékhez tartozó páciens életkorával. (0.5 pont)
+- Készíts egy új oszlopot "eletszakasz" néven, amely az életkor alapján vesz fel értékeket. A következő értékek fordulhatnak elő: Fiatalkorú (0-18 évig), Fiatal felnőtt (18-29), Középkorú (29-59), Időskorú (59-100). (0.5 pont)
+
+
+3. Vizualizáció (1.5 pont)
+
+- Készíts scatter plotot a BMI és a DiabetesPedigreeFunction oszlopok alapján. A pontok színei jelezzék, hogy az adott páciens cukorbeteg-e vagy sem. (0.5 pont)
+- Készíts ábrát, amely oszlopok segítségével megmutatja, hogy életszakaszonként mekkora az átlagos SkinThickness, BMI és BloodPressure. Milyen következtetést lehet levonni az ábrából? (1 pont)
+
+4. Modell készítés (4 pont)
+
+- Az Outcome attribútum lesz az osztálycímkénk. 
+- Válassz ki tetszőlegesen 4 attribútumot, amelyekről úgy gondolod, hogy hatással van az osztálycímkére. Ezt a 4 attribútumot használd a modell tanítása során.
+- BaggingClassifier osztályozó modelleket kell készítened, amely döntési fákból épül fel.
+- Vizsgáld meg a modell pontosságát (accuracy) különböző paraméter beállításoknál: különböző maximális fa mélységeknél (1-től 10-ig) és különböző fa számosságnál (1-től 17-ig páratlan számok). Összesen 10 x 9 = 90 modell pontosságát kell kiszámolnod. A pontosságot 10-fold cross validation-nel határozd meg. (2 pont)
+- Jelenítsd meg a pontosságokat egy ábrával. Az ábra horizontális tengelyén a maximális fa mélységek, a vertikális tengelyén a fa számosságok legyenek, az ábrán 90 pont szerepeljen. A pontok mérete legyen s=100. A pontok színét a pontosság mértéke határozza meg. Szerepeljen az ábrán colorbar, amely megmondja, hogy a színek milyen értékeket jelölnek. (2 pont)
+
+5. Osztályozás (1 pont)
+
+- Válaszd ki azokat a paramétereket (maximális fa mélység és fa számosság), amellyel a legjobb pontosságot sikerült elérni. Készís egy modellt ezekkel a praméterekkel és tanítsd az összes bemeneti adat felhasználásával. (0.5 pont)
+- Készíts egy új rekordot, amelyben minden attribútumot megadsz, amelyek a modell tanításánál is felhasználásra kerültek. Próbálj meg az általad ismert értékeket a saját adataiddal kitölteni (pl. életkor). A modell segítségével végezz predikciót erre a rekordra. Írd le, hogy milyen osztálycímkét ad vissza a modell. (0.5 pont)

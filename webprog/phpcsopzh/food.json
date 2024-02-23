@@ -1,0 +1,51 @@
+[
+    {
+        "name": "virsli",
+        "number": "3",
+        "type": "h\u00fasf\u00e9le",
+        "date": "2022-10-27",
+        "expdate": "2020-11-27"
+    },
+    {
+        "name": "paradicsom",
+        "number": "2",
+        "type": "z\u00f6lds\u00e9g",
+        "date": "2022-11-27",
+        "expdate": "2022-12-05"
+    },
+    {
+        "name": "alma",
+        "number": "64",
+        "type": "h\u00fasf\u00e9le",
+        "date": "2022-11-28",
+        "expdate": "2024-12-18"
+    },
+    {
+        "name": "Rohadt h\u00fas",
+        "number": "64",
+        "type": "tejterm\u00e9k",
+        "date": "2022-11-28",
+        "expdate": "2017-12-06"
+    },
+    {
+        "name": "Golden apple",
+        "number": "1",
+        "type": "nincs",
+        "date": "2022-11-28",
+        "expdate": "2044-12-07"
+    },
+    {
+        "name": "Norv\u00e9g halkonzerv",
+        "number": "1",
+        "type": "h\u00fasf\u00e9le",
+        "date": "2022-11-28",
+        "expdate": "2002-12-02"
+    },
+    {
+        "name": "Milk",
+        "number": "64",
+        "type": "h\u00fasf\u00e9le",
+        "date": "2022-11-28",
+        "expdate": "2022-11-29"
+    }
+]

@@ -1,0 +1,5 @@
+3
+Delta_1 d 4
+Delta_2 d 3
+Delta_3 d 6
+10

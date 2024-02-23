@@ -1,0 +1,150 @@
+﻿Spark RDD feladatok
+
+Feladat 1. (2 pont)
+
+A vasarlasok.txt egy kiskereskedelmi áruházban megvásárolt termékeket tartalmazzák. Minden sor
+egy vásárló kosarában lévő termékeket sorolja fel, vesszővel elválasztva. Határozd meg azt a három
+terméket, amelyekből a legtöbbet vásárolták és add meg hányat. Figyelj oda arra, hogy az
+adathalmazban kis és nagy betűk is előfordulhatnak. Azaz előfordulhat a "rizs" és a "Rizs" termék is.
+Ezeket azonos termékeknek kell tekintened.
+Egy lehetséges kimenet: ('rizs', 120), ('narancs', 34), ('hal', 32)
+
+Egy lehetséges megoldás:
+
+lines = sc.textFile("vasarlasok.txt")\
+.flatMap(lambda l : l.split(","))\
+.map(lambda w: w.lower())\
+.map(lambda w : (w,1))\
+.reduceByKey(lambda a, b: a + b)\
+.sortBy(lambda x: x[1], False)
+
+print(lines.take(3))
+
+-----------------------------------------------------------------------------------------------------
+
+Feladat 2. (2 pont)
+
+Az online_retail_data.csv egy webáruház eladásait tartalmazza. Határozd meg, hogy melyik terméket
+melyik termékkel vásárolják gyakran együtt Franciaországban („France”). Azaz melyek a leggyakrabban
+előforduló termékpárok. Add meg a párok előfordulásának a számát és a 3 legtöbbször előfordulót ad
+vissza.
+Egy lehetséges kimenet: [(('POSTAGE', 'RABBIT NIGHT LIGHT'), 130), (('POSTAGE', 'RED TOADSTOOL
+LED NIGHT LIGHT'), 124), (('PLASTERS IN TIN CIRCUS PARADE ', 'POSTAGE'), 116)]
+
+Egy lehetséges megoldás:
+
+retailFile = 'online_retail_data.csv'
+retailRDD = sc.textFile(retailFile)
+
+def createPairs(x):
+    pairs = []
+    for i in list(x[1]):
+        for j in list(x[1]):
+            if i<j:
+                pairs.append((i,j))
+            elif j<i:
+                pairs.append((j,i))
+    return pairs
+ 
+ret2 = retailRDD.filter(lambda line : not line.startswith("InvoiceNo")).filter(lambda line: line.split(",")[-1] == "France")
+res = ret2.map(lambda line: (line.split(",")[0],line.split(",")[2]))\
+.groupByKey().map(createPairs).flatMap(lambda x:x).map(lambda x: (x,1))\
+.reduceByKey(lambda a,b: a+b).sortBy(lambda x: x[1], False).take(5)
+print(res)
+
+-----------------------------------------------------------------------------------------------------
+
+Spark DataFrame feladatok
+
+Feladat 3. (1 pont)
+
+Melyek azok az ételek, amelyek meghaladják az ajánlott napi zsír bevitelt? (Total Fat (% Daily Value))
+Elvárt oszlopok: [Item]
+
+Egy lehetséges megoldás (SQL):
+
+spark.sql('''
+select Item
+from menu_table
+where `Total Fat (% Daily Value)`>100
+''').show(20,False)
+
+Egy lehetséges megoldás (Spark):
+
+menu.select(col("Item"))\
+.where(col("Total Fat (% Daily Value)")>100)\
+.show(20,False)
+
+-----------------------------------------------------------------------------------------------------
+
+Feladat 4. (1 pont)
+
+Melyik ételnek van a maximális Sugars értéke?
+Elvárt oszlopok: [Item, Sugars]
+
+Egy lehetséges megoldás (SQL):
+
+spark.sql('''
+select Item, Sugars
+from menu_table
+where Sugars = (select max(Sugars) from menu_table)
+''').show(20,False)
+
+Egy lehetséges megoldás (Spark):
+
+maxSugar = menu.select(max(col("Sugars"))).head()[0]
+menu.where(col("Sugars") == maxSugar)\
+.select("Item", "Sugars")\
+.show(20,False)
+
+-----------------------------------------------------------------------------------------------------
+
+Feladat 5. (1 pont)
+
+Hány elem van kategóriánként? Rendezzük csökkenő sorrendbe és adjuk meg a kategóriák nevét is.
+Elvárt oszlopok: [Name, Cnt]
+
+Egy lehetséges megoldás (SQL):
+
+spark.sql('''
+select Name, count(*) as cnt
+from menu_table left join menuCat_table on menu_table.Category = menuCat_table.Id
+group by Name
+order by cnt desc
+''').show(20,False)
+
+Egy lehetséges megoldás (Spark):
+
+menu.join(menuCat, col("Category") == col("Id"))\
+.groupBy("Name")\
+.agg(count("*").alias("cnt"))\
+.orderBy(desc("cnt"))\
+.show(20,False)
+
+-----------------------------------------------------------------------------------------------------
+
+Feladat 6. (1 pont)
+
+Átlagosan mennyi kalóriát tartalmaznak az egyes kategóriák? Adjuk meg a kategória nevét és
+rendezzük átlag alapján csökkenő sorrendbe. A 'Coffee and Tea' és a 'Beverages' kategóriákat ne
+vegyük figyelembe.
+Elvárt oszlopok: [Name, AvgCal]
+
+Egy lehetséges megoldás (SQL):
+
+spark.sql('''
+select Name, avg(Calories) as avgCal
+from menu_table left join menuCat_table on menu_table.Category = menuCat_table.Id
+where Name != 'Coffee and Tea' and Name != 'Beverages'
+group by Name
+order by avgCal desc
+''').show(20,False)
+
+Egy lehetséges megoldás (Spark):
+
+menu.join(menuCat, col("Category") == col("Id"))\
+.where((col("Name") != "Coffee and Tea") & (col("Name") != 'Beverages'))\
+.groupBy("Name")\
+.agg(avg(col("Calories")).alias("avgCal"))\
+.orderBy(desc("avgCal"))\
+.show(20,False)

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/elte-fi/www-assets@19.10.16/styles/mdss.min.css">
+    <style>
+        .kivalasztott {
+            background-color: green !important;
+        }
+    </style>
+    <title>CsoportZH</title>
+</head>
+<body>
+    <h2>Rablók nyilvántartása</h2>
+    <table>
+        <tr>
+            <th>Név</th>
+            <th>Sikkasztott összeg</th>
+            <th>Sikkasztások száma</th>
+        </tr>
+        <tr>
+            <td class="nev">Balek Béla</td>
+            <td class="sikkosszeg">3040204</td>
+            <td class="sikkszama">0</td>
+        </tr>
+        <tr>
+            <td class="nev">Lopós Laci</td>
+            <td class="sikkosszeg">9999999</td>
+            <td class="sikkszama">0</td>
+        </tr>
+        <tr>
+            <td class="nev">Gazdag Gazsi</td>
+            <td class="sikkosszeg">51515555</td>
+            <td class="sikkszama">0</td>
+        </tr>
+        <tr>
+            <td class="nev">Tolvaj Tihamér</td>
+            <td class="sikkosszeg">610000</td>
+            <td class="sikkszama">0</td>
+        </tr>
+    </table>
+    <button id="lopas">LOPÁS!</button>
+    <h3>Összes sikkasztott összeg: <span id="sum"></span></h3>
+    <h2>Új rablók hozzáadása</h2>
+    Név: <input id="nev" type="text" class="new">
+    Sikkasztott összeg: <input id="osszeg" type="number" class="new">
+    Büntetés: <input id="buntetes" type="number" class="new">
+    <button id="hozzaad">Hozzáadás</button>
+    <h3>Tízmilliónál nagyobb: <span id="tizmillio"></span></h3>
+    <h3>Legjobb rabló: <span id="leggazdagabb"></span></h3>
+    <script src="script.js"></script>
+</body>
+</html>

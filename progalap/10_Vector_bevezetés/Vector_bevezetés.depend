@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1542877298 source:d:\dropbox\gabor\elte\progalap_hu\10_vector_bevezetés\main.cpp
+	<iostream>
+	<vector>
+	<algorithm>
+

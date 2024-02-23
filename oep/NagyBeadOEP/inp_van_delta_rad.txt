@@ -1,0 +1,10 @@
+8
+Alfa_1 p 4
+Delta_1 d 4
+Delta_2 d 4
+Delta_3 d 4
+Delta_4 d 4
+None_1 b 3
+None_2 b 3
+None_3 b 3
+20

@@ -1,0 +1,9 @@
+/**
+ * 
+ */
+/**
+ * @author zebalu
+ *
+ */
+module binsearchtree {
+}

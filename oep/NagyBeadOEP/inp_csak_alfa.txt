@@ -1,0 +1,5 @@
+3
+Alfa_1 p 4
+Alfa_2 p 3
+Alfa_3 p 2
+10

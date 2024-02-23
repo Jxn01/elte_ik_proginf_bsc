@@ -1,0 +1,70 @@
+[
+  {
+    "id": "1",
+    "question": "Szeretn\u00e9d-e, hogy legyen INGYEN P\u00f6tty\u00f6s automata a L\u00e1gym\u00e1nyoson?",
+    "options": ["igen", "nem"],
+    "isMultiple": false,
+    "createdAt": "2022-12-04",
+    "deadline": "2022-12-12",
+    "answers": [
+      { "option": "igen", "count": 2 },
+      { "option": "nem", "count": 0 }
+    ],
+    "voted": ["userid1", "userid2"]
+  },
+  {
+    "id": "2",
+    "question": "Miket tartalmazzon a P\u00f6tty\u00f6s automata?",
+    "options": ["Klasszikus T\u00far\u00f3 Rudi", "Karamell\u00e1s Guru", "Tejszelet", "Fitness Rudi"],
+    "isMultiple": true,
+    "createdAt": "2022-12-05",
+    "deadline": "2024-12-13",
+    "answers": [
+      { "option": "Klasszikus T\u00far\u00f3 Rudi", "count": 21 },
+      { "option": "Karamell\u00e1s Guru", "count": 21 },
+      { "option": "Tejszelet", "count": 14 },
+      { "option": "Fitness Rudi", "count": 10 }
+    ],
+    "voted": ["userid1", "userid2", "userid3", "1", "2", "63c6cf9604131"]
+  },
+  {
+    "id": "5",
+    "question": "Egy k\u00e9t h\u00e1? v3",
+    "options": ["1", "2", "3"],
+    "isMultiple": false,
+    "createdAt": "2023-01-17",
+    "deadline": "2023-01-26",
+    "answers": [
+      { "option": "1", "count": 1 },
+      { "option": "2", "count": 1 },
+      { "option": "3", "count": 1 }
+    ],
+    "voted": ["1", "2", "63c6cf9604131"]
+  },
+  {
+    "id": "6",
+    "question": "asd",
+    "options": ["asd", "asd2"],
+    "isMultiple": false,
+    "createdAt": "2023-01-17",
+    "deadline": "2023-01-26",
+    "answers": [
+      { "option": "asd", "count": 1 },
+      { "option": "asd2", "count": 1 }
+    ],
+    "voted": ["1", "2"]
+  },
+  {
+    "id": "7",
+    "question": "asd2",
+    "options": ["asd", "asd2"],
+    "isMultiple": false,
+    "createdAt": "2023-01-17",
+    "deadline": "2023-01-26",
+    "answers": [
+      { "option": "asd", "count": 1 },
+      { "option": "asd2", "count": 1 }
+    ],
+    "voted": ["1", "63c6cf9604131"]
+  }
+]

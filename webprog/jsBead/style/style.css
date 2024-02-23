@@ -1,0 +1,130 @@
+li {
+  padding: 5px;
+  font-size: 30px;
+}
+
+#navbar-div {
+  background-color: #000000;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.navbar-button{
+  border: none;
+  color: gray;
+  padding: 14px 28px;
+  font-size: 30px;
+  display: inline-block;
+}
+
+.n-btn-enabled {
+  cursor: pointer;
+}
+
+.n-btn-enabled:hover {
+  color: white;
+}
+
+.n-btn-enabled.active {
+  color: white;
+}
+
+.hidden {
+  display: none;
+}
+
+.carousel-caption {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #ffffff;
+  padding: 10px;
+}
+
+#select-div {
+  margin-top: 20px;
+}
+
+a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+body{
+  font-family: 'Mouse Memoirs', sans-serif;
+}
+
+h1{
+  font-size: 50px;
+}
+
+h2{
+  font-size: 45px;
+}
+
+h3{
+  font-size: 40px;
+}
+
+p{
+  font-size: 30px;
+}
+
+.btn-big{
+  font-size: 30px;
+}
+
+th{
+  font-size: 30px;
+}
+
+td{
+  font-size: 30px;
+}
+
+#pause-btn, #quit-btn, #restart-btn{
+  margin-top: 10px;
+}
+
+#unfinished-game-div{
+  margin-bottom: 20px;
+}
+
+.cell{
+  width: 50px;
+  height: 50px;
+  border: 3px solid black;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 30px;
+}
+
+.black-cell{
+  background-color: black;
+  color: #ffffff;
+  border: 3px solid white
+}
+
+.black-cell.red{
+  color : red;
+}
+
+.black-cell.satisfied-cell{
+  color : green;
+}
+
+.yellow-cell{
+  background-color: yellow;
+}
+
+.yellow-cell.red-cell{
+  background-color: red;
+}
+
+.red-cell{
+  background-color: red;
+}
+
+.illuminated-cell{
+  background-image: url("../images/lightbulb-32x32.png");
+  background-repeat: no-repeat;
+  background-position: center;
+}

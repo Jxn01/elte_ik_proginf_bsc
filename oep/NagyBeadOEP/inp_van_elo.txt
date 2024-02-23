@@ -1,0 +1,7 @@
+5
+Alpha_1 p 4
+Alpha_2 p 1
+Delta_1 d 1
+Delta_2 d 1
+None_1 b 30
+10

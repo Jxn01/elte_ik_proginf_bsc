@@ -1,0 +1,8 @@
+6
+Alfa_1 p 2
+Alfa_2 p 2
+Delta_1 d 6
+Delta_2 d 6
+None_1 b 1
+None_2 b 1
+5

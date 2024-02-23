@@ -1,0 +1,5 @@
+2
+Alfa_1 p 8
+Delta_1 d 10
+None_1 b 30
+20

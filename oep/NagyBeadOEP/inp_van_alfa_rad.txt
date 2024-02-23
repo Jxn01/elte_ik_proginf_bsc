@@ -1,0 +1,7 @@
+5
+Alfa_1 p 9
+Delta_1 d 20
+Delta_2 d 20
+None_1 b 20
+None_2 b 20
+10

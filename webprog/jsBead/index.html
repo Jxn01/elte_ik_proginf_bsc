@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="hu">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="style/bootstrap.css" rel="stylesheet" />
+    <link href="style/style.css" rel="stylesheet" />
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100&family=Mouse+Memoirs&family=Rum+Raisin&display=swap");
+    </style>
+    <title>JS Beadandó - PST8RA</title>
+  </head>
+  <body>
+    <!--Title-->
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="text-center">
+            <h1>JS Beadandó - PST8RA</h1>
+            <h2>Felvillanyozódás</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--Navbar-->
+    <div class="container" id="navbar-div">
+      <div class="row">
+        <div class="col-4 text-center">
+          <div class="navbar-button n-btn-enabled active" id="rules-btn">Szabályok</div>
+        </div>
+        <div class="col-4 text-center">
+          <div class="navbar-button n-btn-enabled" id="stageselect-btn">Pályaválasztó</div>
+        </div>
+        <div class="col-4 text-center">
+          <div class="navbar-button n-btn-enabled" id="previousgames-btn">Előző játékok</div>
+        </div>
+      </div>
+    </div>
+
+    <!--Rules-->
+    <div class="container" id="rules-div">
+      <div class="row">
+        <div class="col-12">
+          <h1>Felvillanyozódás (játék)</h1>
+          <p>
+            Nekeresdországban Nevenincs királynak egyik szeme sír, a másik
+            nevet. Nevet, mert végre elkészült a hatalmas kacsalábon forgó
+            palotája, sok-sok tágas szobával és folyosóval. Ugyanakkor sír is,
+            mert ezeket a helyiségeket be kell világítani és melegen kell
+            tartani, azonban az aktuális rezsiemelkedés őt is érinti. Itt az
+            ideje tehát elgondolkodni, hogy pontosan hová is helyezzünk el
+            villanykörtéket, hogy minden megfelelően be legyen világítva;
+            ugyanakkor csak oda helyezzünk el izzót, ahol ténylegesen szükség is
+            van rá.
+          </p>
+          <h2>A játék leírása</h2>
+          <ul>
+            <li>
+              A királynak négyzet alapú szobái vannak, amelyek fekete és fehér
+              cellákból állnak.
+            </li>
+            <li>A fehér cellákba villanykörtéket lehet elhelyezni.</li>
+            <li>
+              A villanykörtékből a fény átlósan nem terjed, csak az adott sor és
+              oszlop mentén.
+            </li>
+            <li>
+              A fekete cellákon valamilyen tereptárgy van, ami akadályozza a
+              fény terjedését.
+            </li>
+            <li>
+              A fekete cellák opcionálisan egy egész számot is tartalmazhatnak
+              0-tól 4-ig. Ez azt jelzi, hogy hány szomszédos (alul, felül,
+              jobbra, balra) cella tartalmaz villanykörtét. Ha van ilyen szám,
+              akkor be kell tartani!
+            </li>
+            <li>Két villanykörte soha nem világíthatja meg egymást!</li>
+            <li>
+              A játék célja a villanykörtéket úgy elhelyezni, hogy minden fehér
+              cellát megvilágítsanak.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!--Stage select-->
+    <div class="container hidden" id="stageselect-div">
+      <div class="row hidden" id="unfinished-game-div">
+        <div class="col-12 text-center">
+          <h3>
+            Úgy tűnik, hogy van egy befejezetlen játékod, szeretnéd folytatni?
+            <button class="btn btn-success btn-big" id="continue-btn">
+              Folytatás
+            </button>
+          </h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6 mx-auto">
+          <div
+            id="carouselExampleCaptions"
+            class="carousel slide"
+            data-bs-ride="false"
+          >
+            <div class="carousel-indicators">
+              <button
+                type="button"
+                data-bs-target="#carouselExampleCaptions"
+                data-bs-slide-to="0"
+                class="active"
+                aria-current="true"
+                aria-label="Slide 1"
+              ></button>
+              <button
+                type="button"
+                data-bs-target="#carouselExampleCaptions"
+                data-bs-slide-to="1"
+                aria-label="Slide 2"
+              ></button>
+              <button
+                type="button"
+                data-bs-target="#carouselExampleCaptions"
+                data-bs-slide-to="2"
+                aria-label="Slide 3"
+              ></button>
+            </div>
+            <div class="carousel-inner">
+              <div class="carousel-item active" id="stage1-div">
+                <img
+                  src="images/palya1.png"
+                  class="d-block w-100"
+                  alt="1. pálya"
+                />
+                <div class="carousel-caption d-none d-md-block">
+                  <h2>1. pálya</h2>
+                  <h3>Könnyű 7x7-es</h3>
+                </div>
+              </div>
+              <div class="carousel-item" id="stage2-div">
+                <img
+                  src="images/palya2.png"
+                  class="d-block w-100"
+                  alt="2. pálya"
+                />
+                <div class="carousel-caption d-none d-md-block">
+                  <h2>2. pálya</h2>
+                  <h3>Nehéz 7x7-es</h3>
+                </div>
+              </div>
+              <div class="carousel-item" id="stage3-div">
+                <img
+                  src="images/palya3.png"
+                  class="d-block w-100"
+                  alt="3. pálya"
+                />
+                <div class="carousel-caption d-none d-md-block">
+                  <h2>3. pálya</h2>
+                  <h3>Extrém 10x10-es</h3>
+                </div>
+              </div>
+            </div>
+            <button
+              class="carousel-control-prev"
+              type="button"
+              data-bs-target="#carouselExampleCaptions"
+              data-bs-slide="prev"
+            >
+              <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Előző pálya</span>
+            </button>
+            <button
+              class="carousel-control-next"
+              type="button"
+              data-bs-target="#carouselExampleCaptions"
+              data-bs-slide="next"
+            >
+              <span
+                class="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Következő pálya</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 text-center" id="select-div">
+          <button
+            class="btn btn-success btn-big"
+            id="gamestart-btn"
+            data-bs-toggle="modal"
+            data-bs-target="#name-modal"
+          >
+            Kiválasztás
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!--Previous games-->
+    <div class="container hidden" id="previousgames-div">
+      <div class="row">
+        <div class="col-12">
+          <h2>Előző játékok</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Név</th>
+                <th scope="col">Pálya</th>
+                <th scope="col">Teljesítési idő</th>
+                <th scope="col">Elhelyezett villanykörték száma</th>
+              </tr>
+            </thead>
+            <tbody id="players-div">
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!--Game-->
+    <div class="container hidden" id="game-div">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h2 id="stagename-div">Teszt stage</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-3">
+          <h2>Név: <span id="name-div">Teszt</span></h2>
+          <h2>Eltelt idő: <span id="time-div">00:00</span></h2>
+        </div>
+        <div class="col-6" id="table-div"></div>
+        <div class="col-3">
+          <h2>Elhelyezett villanykörték: <span id="lightbulbs-div">0</span></h2>
+          <h3>A játék folyamatosan mentődik!</h3>
+          <button type="button" class="btn btn-warning btn-big" id="pause-btn">
+            Játék szüneteltetése
+          </button>
+          <button
+            type="button"
+            class="btn btn-danger btn-big"
+            id="quit-btn"
+            data-bs-toggle="modal"
+            data-bs-target="#quit-modal"
+          >
+            Játék elhagyása
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-warning btn-big"
+            id="restart-btn"
+            data-bs-toggle="modal"
+            data-bs-target="#restart-modal"
+          >
+            Játék újrakezdése
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Name-sending modal -->
+    <div
+      class="modal fade"
+      id="name-modal"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-2" id="staticBackdropLabel">
+              Kérlek, add meg a neved!
+            </h1>
+            <!--
+              <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+              ></button>
+            -->
+          </div>
+          <div class="modal-body">
+            <h2>Név: <input type="text" id="name-txt" /></h2>
+          </div>
+          <div class="modal-footer">
+            <!--
+              <button
+              type="button"
+              class="btn btn-secondary btn-big"
+              data-bs-dismiss="modal"
+            >
+              Bezárás
+            </button>
+            -->
+            <button
+              type="button"
+              class="btn btn-success btn-big"
+              id="sendname-btn"
+              data-bs-dismiss="modal"
+            >
+              Küldés
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quit modal -->
+    <div
+      class="modal fade"
+      id="quit-modal"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-2" id="staticBackdropLabel">
+              Biztosan el akarod hagyni a játékot?
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+              id="cancelquit2-btn"
+            ></button>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-danger btn-big"
+              data-bs-dismiss="modal"
+              id="reallyquit-btn"
+            >
+              Biztosan
+            </button>
+            <button
+              type="button"
+              class="btn btn-success btn-big"
+              data-bs-dismiss="modal"
+              id="cancelquit-btn"
+            >
+              Inkább mégsem
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--Restart modal-->
+    <div
+      class="modal fade"
+      id="restart-modal"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-2" id="staticBackdropLabel">
+              Biztosan újra szeretnéd kezdeni a játékot?
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+              id="cancelrestart2-btn"
+            ></button>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-danger btn-big"
+              data-bs-dismiss="modal"
+              id="reallyrestart-btn"
+            >
+              Biztosan
+            </button>
+            <button
+              type="button"
+              class="btn btn-success btn-big"
+              data-bs-dismiss="modal"
+              id="cancelrestart-btn"
+            >
+              Inkább mégsem
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--Game over modal-->
+    <div
+      class="modal fade"
+      id="gameover-modal"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-2" id="staticBackdropLabel">
+              Gratulálok! A játék véget ért!
+            </h1>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-success btn-big"
+              data-bs-dismiss="modal"
+              id="gameover-btn"
+            >
+              Juhé!
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script/bootstrap.bundle.js"></script>
+    <script src="script/script.js"></script>
+  </body>
+</html>
